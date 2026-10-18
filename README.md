@@ -1,113 +1,96 @@
 # ashel-skills
 
-Skills для AI-агентов: конкретные правила читаемого frontend-кода и самостоятельные примеры.
+Author's code conventions for AI coding agents.
 
-## Skills
+## Ashel Front Style
 
-| Skill | Назначение |
-| --- | --- |
-| [ashel-frontend-style](skills/ashel-frontend-style/SKILL.md) | React/TypeScript: смысловые группы импортов, компактные компоненты, явные обработчики, Tailwind/SCSS Modules и типизированные API |
+[Ashel Front Style](skills/ashel-front-style/SKILL.md) applies Ashel's React and TypeScript code conventions: semantic import and state groups, compact components, explicit handlers, Tailwind, and typed APIs. It guides code organization and implementation choices; the product brief determines the visual design.
 
-Skill описывает организацию компонентов, смысловую группировку импортов и состояний, типизацию пропсов, экспорты, обработчики, Tailwind/SCSS Modules, UI-примитивы, формы и API. Все правила изложены нейтрально и сопровождаются кодом внутри skill. Предварительное чтение внешних инструкций или исследование репозиториев не требуется.
+Use it when you want Ashel's conventions or your project already adopts them. Existing project instructions, formatting, architecture, and dependencies take priority unless you explicitly request a change. Library choices in examples are optional.
 
-## Установка
+The skill instructions are written in Russian, with English code identifiers.
 
-После публикации этого репозитория на GitHub:
+## Install
 
-```sh
-npx skills add 7evenUp/ashel-skills --skill ashel-frontend-style
-```
-
-Установить глобально для Codex:
+Once the repository is public on GitHub, install with Node.js/npm:
 
 ```sh
-npx skills add 7evenUp/ashel-skills --skill ashel-frontend-style --agent codex --global
+npx skills add 7evenUp/ashel-skills --skill ashel-front-style
 ```
 
-Посмотреть доступные skills без установки:
+Install globally for Codex:
 
 ```sh
-npx skills add 7evenUp/ashel-skills --list
+npx skills add 7evenUp/ashel-skills --skill ashel-front-style --agent codex --global
 ```
 
-Для проверки до публикации запустите из корня локального репозитория:
-
-```sh
-npx skills add . --list
-```
-
-Команда установки требует Node.js/npm. При установке через CLI выберите нужного агента и область установки, если они не указаны флагами.
-
-## Использование
-
-Пример запроса после установки:
-
-```text
-Используй $ashel-frontend-style и реализуй страницу профиля в моём стиле.
-```
-
-Можно уточнить вариант:
-
-```text
-Используй $ashel-frontend-style. Сделай лендинг:
-React, секции и SCSS Modules, без внедрения Redux ради статического контента.
-```
-
-Основные правила и короткие примеры находятся в `SKILL.md`. Полные фрагменты утилит, UI и API включены в `references/examples.md`, группировка состояний и поведения — в `references/component-organization.md`, пример секционной вёрстки — в `references/layout.md`. Эти материалы самостоятельны и не ссылаются на рабочие исходники. Файл `agents/openai.yaml` содержит метаданные для Codex.
-
-## Структура
-
-```text
-ashel-skills/
-  .github/workflows/validate.yml
-  .gitattributes
-  .gitignore
-  README.md
-  skills/
-    ashel-frontend-style/
-      SKILL.md
-      agents/openai.yaml
-      references/
-        component-organization.md
-        layout.md
-        examples.md
-```
-
-Новые skills добавляются в `skills/<skill-name>/SKILL.md`. Поля `name` и `description` в YAML обязательны. Название каталога должно совпадать с `name`. Не размещайте общий `SKILL.md` в корне репозитория: коллекция должна обнаруживаться как отдельные skills.
-
-## Публикация на GitHub
-
-1. Создайте пустой публичный репозиторий `7evenUp/ashel-skills`, без автоматически добавленных README, .gitignore и лицензии.
-2. Откройте терминал в корне этой папки. Локальный Git-репозиторий уже инициализирован с веткой `main`.
-3. Создайте первый коммит и отправьте его:
-
-```sh
-git add .
-git commit -m "Add frontend code style skill"
-git remote add origin https://github.com/7evenUp/ashel-skills.git
-git push -u origin main
-```
-
-Если `origin` уже настроен, проверьте его через `git remote -v` и не добавляйте повторно. Выбор лицензии оставлен владельцу; файл LICENSE пока не добавлен.
-
-## skills.sh
-
-Отдельно загружать архив на skills.sh не требуется. Источник skill — GitHub-репозиторий. После публикации проверьте удалённое обнаружение и установите skill:
+Inspect available skills without installing:
 
 ```sh
 npx skills add 7evenUp/ashel-skills --list
-npx skills add 7evenUp/ashel-skills --skill ashel-frontend-style
 ```
 
-Согласно [FAQ skills.sh](https://skills.sh/docs/faq), каталог учитывает установки через CLI и добавляет skills в рейтинг на основе анонимной телеметрии. Локальная проверка `--list` не означает, что skill уже опубликован или появился в каталоге. Срок появления на сайте не гарантируется.
+## Use
 
-Правила формата и обнаружения: [официальный репозиторий skills CLI](https://github.com/vercel-labs/skills#creating-skills).
+```text
+Use $ashel-front-style to implement a profile page in this React/TypeScript project.
+Preserve the existing formatter, component library, and API contracts.
+```
 
-## Проверка изменений
+For a new project:
+
+```text
+Use $ashel-front-style to build a React landing page with Tailwind.
+Compose it from sections and keep static content local to each section.
+```
+
+## Example: group state by purpose
+
+Before, the step flag interrupts the form fields:
+
+```tsx
+const [oldEmailInput, setOldEmailInput] = useState("")
+const [isSecondStep, setIsSecondStep] = useState(false)
+const [newEmailInput, setNewEmailInput] = useState("")
+```
+
+After, navigation state and form fields form separate groups:
+
+```tsx
+const [isSecondStep, setIsSecondStep] = useState(false)
+
+const [oldEmailInput, setOldEmailInput] = useState("")
+const [newEmailInput, setNewEmailInput] = useState("")
+```
+
+Both fragments belong inside a React component with `useState` imported from React. Independent values remain separate states; grouping does not require an object or reducer.
+
+## Contents
+
+- [SKILL.md](skills/ashel-front-style/SKILL.md): conventions and project precedence.
+- [Component organization](skills/ashel-front-style/references/component-organization.md): state, handlers, resets, and query groups.
+- [Code examples](skills/ashel-front-style/references/examples.md): `cn`, Skeleton, and a typed RTK Query API.
+- [Codex metadata](skills/ashel-front-style/agents/openai.yaml): display name and description.
+
+## Validate changes
+
+From the repository root, using Node.js 22 or later:
 
 ```sh
+npm ci --ignore-scripts
+npm run validate
 git diff --check
 npx skills add . --list
 ```
 
-GitHub Actions выполняет проверку обнаружения skills при push и pull request. Эта проверка подтверждает доступность формата для CLI, но не качество генерируемого frontend-кода. Примеры и инструкции дополнительно сверяйте с реальными задачами.
+[Validation](scripts/validate-skills.mjs) checks YAML frontmatter, skill names, Codex metadata, and local Markdown links. GitHub Actions also checks discovery with the official CLI.
+
+For behavioral review, try a new project, an existing project with different formatting, and a small change that should not introduce dependencies. Check whether the output preserves project conventions and stays within the requested scope.
+
+## skills.sh
+
+Publish the repository on GitHub and verify remote discovery with `--list`. According to the [skills.sh FAQ](https://skills.sh/docs/faq), leaderboard entries are tracked through CLI installations with telemetry enabled. A local discovery check does not establish a public listing.
+
+## License
+
+[MIT](LICENSE). A copy is included in the skill directory so installed copies retain the license.

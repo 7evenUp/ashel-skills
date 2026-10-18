@@ -1,0 +1,3 @@
+interface:
+  display_name: "Ashel Front Style"
+  short_description: "Ashel's React and TypeScript code conventions"
