@@ -24,12 +24,6 @@ Install globally for Codex:
 npx skills add 7evenUp/ashel-skills --skill ashel-front-style --agent codex --global
 ```
 
-Inspect available skills without installing:
-
-```sh
-npx skills add 7evenUp/ashel-skills --list
-```
-
 ## Use
 
 ```text
@@ -72,25 +66,10 @@ Both fragments belong inside a React component with `useState` imported from Rea
 - [Code examples](skills/ashel-front-style/references/examples.md): `cn`, Skeleton, and a typed RTK Query API.
 - [Codex metadata](skills/ashel-front-style/agents/openai.yaml): display name and description.
 
-## Validate changes
-
-From the repository root, using Node.js 22 or later:
-
-```sh
-npm ci --ignore-scripts
-npm run validate
-git diff --check
-npx skills add . --list
-```
-
-[Validation](scripts/validate-skills.mjs) checks YAML frontmatter, skill names, Codex metadata, and local Markdown links. GitHub Actions also checks discovery with the official CLI.
-
-For behavioral review, try a new project, an existing project with different formatting, and a small change that should not introduce dependencies. Check whether the output preserves project conventions and stays within the requested scope.
-
 ## skills.sh
 
-Publish the repository on GitHub and verify remote discovery with `--list`. According to the [skills.sh FAQ](https://skills.sh/docs/faq), leaderboard entries are tracked through CLI installations with telemetry enabled. A local discovery check does not establish a public listing.
+According to the [skills.sh FAQ](https://skills.sh/docs/faq), leaderboard entries are tracked through CLI installations from public GitHub repositories with telemetry enabled.
 
 ## License
 
-[MIT](LICENSE). A copy is included in the skill directory so installed copies retain the license.
+[MIT](LICENSE).
