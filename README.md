@@ -1,27 +1,27 @@
 # ashel-skills
 
-Личные skills для AI-агентов: повторяемые рабочие подходы и стиль кода из моих проектов.
+Skills для AI-агентов: конкретные правила читаемого frontend-кода и самостоятельные примеры.
 
 ## Skills
 
 | Skill | Назначение |
 | --- | --- |
-| [crypton-frontend-style](skills/crypton-frontend-style/SKILL.md) | React/TypeScript frontend в стиле проектов Nutsfarm, id-frontend, x-landing, events-front и Nutcracker, с учётом вариантов Academy и academy-tma |
+| [ashel-frontend-style](skills/ashel-frontend-style/SKILL.md) | React/TypeScript: смысловые группы импортов, компактные компоненты, явные обработчики, Tailwind/SCSS Modules и типизированные API |
 
-Skill описывает организацию компонентов, типизацию пропсов, экспорты, обработчики, Tailwind/SCSS Modules, UI-примитивы, формы и API. Он выбирает подходящий вариант по текущему проекту и не требует доступа к исходным рабочим репозиториям.
+Skill описывает организацию компонентов, типизацию пропсов, экспорты, обработчики, Tailwind/SCSS Modules, UI-примитивы, формы и API. Все правила изложены нейтрально и сопровождаются кодом внутри skill. Предварительное чтение внешних инструкций или исследование репозиториев не требуется.
 
 ## Установка
 
 После публикации этого репозитория на GitHub:
 
 ```sh
-npx skills add 7evenUp/ashel-skills --skill crypton-frontend-style
+npx skills add 7evenUp/ashel-skills --skill ashel-frontend-style
 ```
 
 Установить глобально для Codex:
 
 ```sh
-npx skills add 7evenUp/ashel-skills --skill crypton-frontend-style --agent codex --global
+npx skills add 7evenUp/ashel-skills --skill ashel-frontend-style --agent codex --global
 ```
 
 Посмотреть доступные skills без установки:
@@ -43,17 +43,17 @@ npx skills add . --list
 Пример запроса после установки:
 
 ```text
-Используй $crypton-frontend-style и реализуй страницу профиля в моём стиле.
+Используй $ashel-frontend-style и реализуй страницу профиля в моём стиле.
 ```
 
 Можно уточнить вариант:
 
 ```text
-Используй $crypton-frontend-style. Сделай лендинг в духе x-landing:
+Используй $ashel-frontend-style. Сделай лендинг:
 React, секции и SCSS Modules, без внедрения Redux ради статического контента.
 ```
 
-Правила находятся в `SKILL.md`. Подробности загружаются по необходимости из `references/patterns.md`, примеры — из `references/examples.md`, основания выводов — из `references/evidence.md`. Файл `agents/openai.yaml` содержит метаданные для Codex.
+Основные правила и короткие примеры находятся в `SKILL.md`. Полные фрагменты утилит, UI и API включены в `references/examples.md`, пример секционной вёрстки — в `references/layout.md`. Эти материалы самостоятельны и не ссылаются на рабочие исходники. Файл `agents/openai.yaml` содержит метаданные для Codex.
 
 ## Структура
 
@@ -64,13 +64,12 @@ ashel-skills/
   .gitignore
   README.md
   skills/
-    crypton-frontend-style/
+    ashel-frontend-style/
       SKILL.md
       agents/openai.yaml
       references/
-        patterns.md
+        layout.md
         examples.md
-        evidence.md
 ```
 
 Новые skills добавляются в `skills/<skill-name>/SKILL.md`. Поля `name` и `description` в YAML обязательны. Название каталога должно совпадать с `name`. Не размещайте общий `SKILL.md` в корне репозитория: коллекция должна обнаруживаться как отдельные skills.
@@ -83,7 +82,7 @@ ashel-skills/
 
 ```sh
 git add .
-git commit -m "Add crypton frontend style skill"
+git commit -m "Add frontend code style skill"
 git remote add origin https://github.com/7evenUp/ashel-skills.git
 git push -u origin main
 ```
@@ -96,7 +95,7 @@ git push -u origin main
 
 ```sh
 npx skills add 7evenUp/ashel-skills --list
-npx skills add 7evenUp/ashel-skills --skill crypton-frontend-style
+npx skills add 7evenUp/ashel-skills --skill ashel-frontend-style
 ```
 
 Согласно [FAQ skills.sh](https://skills.sh/docs/faq), каталог учитывает установки через CLI и добавляет skills в рейтинг на основе анонимной телеметрии. Локальная проверка `--list` не означает, что skill уже опубликован или появился в каталоге. Срок появления на сайте не гарантируется.
