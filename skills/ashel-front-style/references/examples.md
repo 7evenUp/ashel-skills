@@ -19,7 +19,7 @@ export const cn = (...inputs: ClassValue[]) => {
 
 ## Skeleton: небольшой UI-примитив целиком
 
-Зависимости: React, Tailwind и `./cn` из примера выше. Декоративный skeleton скрыт от скринридера; анимация учитывает reduced motion.
+Зависимости: React, Tailwind и `./cn` из примера выше. Декоративный skeleton скрыт от скринридера.
 
 ```tsx
 import type { HTMLAttributes } from "react"
@@ -33,7 +33,7 @@ const Skeleton = ({
   return (
     <div
       aria-hidden="true"
-      className={cn("motion-safe:animate-pulse rounded-md bg-white/10", className)}
+      className={cn("animate-pulse rounded-md bg-white/10", className)}
       {...props}
     />
   )

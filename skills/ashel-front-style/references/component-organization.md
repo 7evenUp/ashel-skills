@@ -96,7 +96,7 @@ const onDialogClose = () => {
 const { data: categories, isLoading: isCategoriesLoading } =
   useGetCategoriesQuery()
 const { data: authorCategories, isLoading: isAuthorCategoriesLoading } =
-  useGetAuthorCategoriesQuery({ authorId })
+  useGetAuthorCategoriesQuery()
 
 const [createAuthorCategory, { isLoading: isCreateAuthorCategoryLoading }] =
   useCreateAuthorCategoryMutation()
@@ -111,7 +111,7 @@ const [updateAdminCategory, { isLoading: isUpdateAdminCategoryLoading }] =
   useUpdateAdminCategoryMutation()
 ```
 
-`authorId` — идентификатор автора. Queries сгруппированы как чтение данных, mutations — по двум сценариям управления. Алиасы объясняют, к какому действию относится pending-состояние.
+Queries сгруппированы как чтение данных, mutations — по двум сценариям управления. Алиасы объясняют, к какому действию относится pending-состояние.
 
 ## Эффекты и JSX продолжают тот же принцип
 
