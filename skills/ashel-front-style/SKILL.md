@@ -203,4 +203,6 @@ className={cn(
 
 ## Примеры
 
-Для реализации `cn`, Skeleton или RTK Query API смотри соответствующий раздел [examples.md](references/examples.md). Для группировки состояний, обработчиков и сбросов смотри [component-organization.md](references/component-organization.md).
+Для реализации `cn`, Skeleton или RTK Query API смотри соответствующий раздел [examples.md](references/examples.md).
+Для группировки состояний, обработчиков и сбросов смотри [component-organization.md](references/component-organization.md).
+Если появляется задача добавить переводы на другие языки смотри [i18n.md](references/i18n.md). Не принимай решение добавить функционал переводов в проект самостоятельно.
